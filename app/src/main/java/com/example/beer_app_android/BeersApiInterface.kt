@@ -8,6 +8,8 @@ import retrofit2.http.Path
 interface BeersApiInterface {
 
     @GET("beer/{id}")
-    fun getBeerById(@Path("id") id:Int): Deferred<Response<Beer>>
+    fun getBeerAsync(@Path("id") id:Int): Deferred<Response<Beer>>
+
+
 
 }

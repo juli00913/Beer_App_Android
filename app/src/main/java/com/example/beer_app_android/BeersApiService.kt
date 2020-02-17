@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 object BeersApiService {
 
@@ -14,8 +14,8 @@ object BeersApiService {
 
     fun retrofit() : Retrofit = Retrofit.Builder()
         .client(apiClient)
-        .baseUrl(" http://34.245.99.203L8080/api/")
-        .addConverterFactory(MoshiConverterFactory.create())
+        .baseUrl(" http://34.245.99.203:8080/api/")
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 

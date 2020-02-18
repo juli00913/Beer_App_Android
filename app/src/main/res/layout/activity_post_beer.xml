@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="beer"
+            type="com.example.beer_app_android.Beer" />
+        <variable
+            name="viewModel"
+            type="com.example.beer_app_android.BeerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PostBeerActivity">
+
+        <EditText
+            android:id="@+id/beerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="99dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginBottom="38dp"
+            android:text="@={beer.name}"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Name"
+            app:layout_constraintBottom_toTopOf="@+id/beerType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/beerType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="99dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginBottom="42dp"
+            android:text="@={beer.beer_type}"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Beer Type"
+            app:layout_constraintBottom_toTopOf="@+id/beerDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerName" />
+
+        <EditText
+            android:id="@+id/beerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="99dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginBottom="438dp"
+            android:text="@={beer.description}"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerType" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="129dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="141dp"
+            android:layout_marginBottom="344dp"
+            android:text="Button"
+            android:onClick="@{() -> viewModel.postBeer(beer)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

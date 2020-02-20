@@ -11,13 +11,15 @@ class BeerViewModel : ViewModel() {
 
     private val parentJob = Job()
 
-    private val coroutineContext : CoroutineContext get() = parentJob + Dispatchers.Default
+    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Default
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val beerRepository : BeerRepository = BeerRepository(BeersApiService.beersApi)
+    private val beerRepository: BeerRepository = BeerRepository(BeersApiService.beersApi)
 
     val beerLiveData = MutableLiveData<Beer>()
+
+    val beers = MutableLiveData<List<Beer>>()
 
     private lateinit var jsonObject: JsonObject
 
@@ -39,5 +41,16 @@ class BeerViewModel : ViewModel() {
             beerRepository.postBeer(jsonObject)
         }
     }
-    fun cancelRequest() = coroutineContext.cancel()
+
+    fun getListOfBeers() {
+        scope.launch {
+            val fetchedBeers = beerRepository.getListOfBeers()
+            beers.postValue(fetchedBeers)
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if(!parentJob.isCancelled) parentJob.cancel()
+    }
 }

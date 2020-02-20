@@ -56,4 +56,9 @@ dependencies {
 //Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:4.3.1")
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+//RecycleView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //Material Components
+    implementation 'com.google.android.material:material:1.2.0-alpha04'
 }

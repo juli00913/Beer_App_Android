@@ -17,4 +17,11 @@ class BeerRepository(private val apiInterface: BeersApiInterface) : BaseReposito
             error = "Error posting a beer"
         )
     }
+
+    suspend fun getListOfBeers() : List<Beer>? {
+        return safeApiCall(
+            call = {apiInterface.getListAsync().await()},
+            error = "Error fetching a list of beers"
+        )
+    }
 }

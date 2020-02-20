@@ -2,17 +2,20 @@ package com.example.beer_app_android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_beer.*
+import com.example.beer_app_android.databinding.BeerViewBinding
 
 class BeerActivity : AppCompatActivity() {
 
     private lateinit var beerViewModel: BeerViewModel
+    private lateinit var binding : BeerViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_beer)
+        setContentView(R.layout.beer_view)
+       binding = DataBindingUtil.setContentView(this, R.layout.beer_view)
 
         beerViewModel = ViewModelProvider(this).get(BeerViewModel::class.java)
 
@@ -20,9 +23,7 @@ class BeerActivity : AppCompatActivity() {
 
         beerViewModel.beerLiveData.observe(this, Observer {
             if(it != null) {
-                beerName.text = it.name
-                beerType.text = it.beer_type
-                beerDescription.text = it.description
+                binding.beer = it
             }
         })
     }

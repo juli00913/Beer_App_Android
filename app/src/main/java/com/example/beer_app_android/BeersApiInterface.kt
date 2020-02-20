@@ -16,4 +16,6 @@ interface BeersApiInterface {
     @POST("beer/")
     fun postBeerAsync(@Body beer: JsonObject): Deferred<Response<Beer>>
 
+    @GET("list/beer/")
+    fun getListAsync(): Deferred<Response<List<Beer>>>
 }

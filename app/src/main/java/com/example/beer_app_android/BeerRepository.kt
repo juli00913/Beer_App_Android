@@ -1,7 +1,5 @@
 package com.example.beer_app_android
 
-import com.google.gson.JsonObject
-
 class BeerRepository(private val apiInterface: BeersApiInterface) : BaseRepository() {
     suspend fun getBeer() : Beer? {
         return safeApiCall(
@@ -11,7 +9,7 @@ class BeerRepository(private val apiInterface: BeersApiInterface) : BaseReposito
         )
     }
 
-    suspend fun postBeer(beer : JsonObject) {
+    suspend fun postBeer(beer : Beer) {
         safeApiCall(
             call = {apiInterface.postBeerAsync(beer).await()},
             error = "Error posting a beer"

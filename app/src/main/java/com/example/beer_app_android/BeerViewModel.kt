@@ -1,6 +1,5 @@
 package com.example.beer_app_android
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
@@ -33,12 +32,8 @@ class BeerViewModel : ViewModel() {
 
     fun postBeer(beer: Beer) {
 
-        jsonObject = JsonObject()
-        jsonObject.addProperty("name", beer.name)
-        jsonObject.addProperty("beer_type", beer.beer_type)
-        jsonObject.addProperty("description", beer.description)
         scope.launch {
-            beerRepository.postBeer(jsonObject)
+            beerRepository.postBeer(beer)
         }
     }
 

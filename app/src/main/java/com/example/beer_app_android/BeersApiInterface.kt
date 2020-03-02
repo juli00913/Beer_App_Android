@@ -1,6 +1,5 @@
 package com.example.beer_app_android
 
-import com.google.gson.JsonObject
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.Body
@@ -14,7 +13,7 @@ interface BeersApiInterface {
     fun getBeerAsync(@Path("id") id:Int): Deferred<Response<Beer>>
 
     @POST("beer/")
-    fun postBeerAsync(@Body beer: JsonObject): Deferred<Response<Beer>>
+    fun postBeerAsync(@Body beer: Beer): Deferred<Response<Beer>>
 
     @GET("list/beer/")
     fun getListAsync(): Deferred<Response<List<Beer>>>
